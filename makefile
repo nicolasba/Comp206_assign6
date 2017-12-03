@@ -1,8 +1,8 @@
-PCproblem: main.o consumer.o producer.o
+PCproblem: ain.o consumer.o producer.o
   gcc -o PCproblem main.o consumer.o producer.o
-main.o: main.c
-  gcc -c main.c
-consumer.o: consumer.c
-  gcc -c consumer.c
-producer.o: producer.c
-  gcc -c producer.c
+main.o: Main.c
+  gcc -c Main.c
+consumer.o: Consumer.c
+  gcc -c Consumer.c
+producer.o: Producer.c
+  gcc -c Producer.c
