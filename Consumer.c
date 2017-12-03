@@ -2,24 +2,34 @@
  * Consumer.c
  *
  *  Created on: Nov 29, 2017
- *      Author: nicolas
+ *      Author: Polina
  */
 
-//this function reads characters from DATA and display them on screen when TURN = "1" then gives TURN to Producer 
+//this function opens TURN.txt and reads it's first character
+//if the character == "1" then consumer opens DATA.txt
+//reads the character from DATA.txt and prints it to the screen
+//it then changes the character in TURN.txt to "0"
 consumer(){
-  char *q;
-  //infinite loop that waits for TURN to be 1
-  while(1){
-    //get the value of environmental variable TURN
-    do {q = getenv("TURN");}
-    //while value of TURN is 1 get the value of DATA
-    while (strcmp(q,"1")!= 0);
-    char *s;
-    //get the value of environmental variable DATA
-    s=getenv("DATA");
-    //display character stored in DATA
-    printf("%s",s);
-    //give TURN to Producer (set TURN to 0)
-    setenv("TURN","0",1);
+  
+  char c,d;
+  FILE *q,*s;
+  
+  while((q=fopen("TURN.txt","r+"))==NULL);
+  
+  c=fgetc(q);
+  
+  if(c=='1'){
+    s=fopen("DATA.txt","r");
+    d=fgetc(s);
+    prinf("%s",d);
   }
+  
+  else{
+    printf("value in TURN.txt is not 1");
+  }
+  fclose(s);
+  
+  fputc("0","TURN.txt");
+  fclose(q);
+
 }
