@@ -5,6 +5,8 @@
  *      Author: Polina
  */
 
+#include <stdio.h>
+
 //this function opens TURN.txt and reads it's first character
 //if the character == "1" then consumer opens DATA.txt
 //reads the character from DATA.txt and prints it to the screen
