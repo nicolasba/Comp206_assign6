@@ -6,24 +6,25 @@
  */
 
 #include <stdio.h>
+#include "Consumer.h"
 
 //this function opens TURN.txt and reads it's first character
 //if the character == "1" then consumer opens DATA.txt
 //reads the character from DATA.txt and prints it to the screen
 //it then changes the character in TURN.txt to "0"
-consumer(){
+void consumer(){
   
   char c,d;
   FILE *q,*s;
   
-  while((q=fopen("TURN.txt","r+"))==NULL);
+  while((q=fopen("turn.txt","r+"))==NULL);
   
   c=fgetc(q);
   
   if(c=='1'){
-    s=fopen("DATA.txt","r");
+    s=fopen("data.txt","r");
     d=fgetc(s);
-    prinf("%s",d);
+    printf("%c",d);
   }
   
   else{
@@ -31,7 +32,7 @@ consumer(){
   }
   fclose(s);
   
-  fputc("0","TURN.txt");
+  fputc('0', q);
   fclose(q);
 
 }

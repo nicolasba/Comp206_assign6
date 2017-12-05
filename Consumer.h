@@ -8,6 +8,6 @@
 #ifndef COMP206_ASSIGN6_CONSUMER_H_
 #define COMP206_ASSIGN6_CONSUMER_H_
 
-consumer();
+void consumer();
 
 #endif /* COMP206_ASSIGN6_CONSUMER_H_ */

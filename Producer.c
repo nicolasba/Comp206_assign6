@@ -6,7 +6,9 @@
  */
 #include <stdlib.h>
 #include <stdio.h>
+#include "Producer.h"
 #define PRODUCER_TURN '0'
+
 /*
  * This function constantly tries to open and read from "turn.txt". When
  * the character contained in this file == '0'(producer's turn), it reads
@@ -18,9 +20,11 @@ void producer()
 {
 	char turn, charToProduce;
 	FILE *turnFile, *dataFromFile, *dataToFile;
-	int endOfFile = 0;
 
-	while (!endOfFile)
+	dataFromFile = fopen("mydata.txt", "rt");
+	charToProduce = fgetc(dataFromFile);
+
+	while (!feof(dataFromFile))
 	{
 		while ((turnFile = fopen("turn.txt", "r+")) == NULL);
 
@@ -28,27 +32,27 @@ void producer()
 
 		if (turn == PRODUCER_TURN)
 		{
-			dataFromFile = fopen("mydata.txt", "rt");
 			dataToFile = fopen("data.txt", "wt");
 
-			if (!feof(dataFromFile))
-			{
-				charToProduce = fgetc(dataFromFile);
-				fputc(charToProduce, dataToFile);
-			}
-			else
-			{
-				endOfFile = 1;
-				//Write '2' in "turn.txt" for the consumer to see and terminate
-				fputc('2', turnFile);
-			}
+			printf("%c", charToProduce);
+			fputc(charToProduce, dataToFile);
 
-			fclose(dataFromFile);
 			fclose(dataToFile);
-
-			//Close turn file so that consumer can read from it
-			fclose(turnFile);
 		}
+		charToProduce = fgetc(dataFromFile);
+
+		//Send turn to consumer
+		fputc('1', turnFile);
+		fclose(turnFile);
 	}
 
+	//Put '2' inside "turn.txt" so that consumer knows producer has reached
+	//end of file
+	while ((turnFile = fopen("turn.txt", "r+")) == NULL);
+
+	if (fgetc(turnFile) == PRODUCER_TURN)
+		fputc('2', turnFile);
+
+	fclose(turnFile);
+	fclose(dataFromFile);
 }

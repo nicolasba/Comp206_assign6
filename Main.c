@@ -7,8 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <Consumer.h>
-#include <Producer.h>
+#include "Consumer.h"
+#include "Producer.h"
 
 int main(void)
 {
@@ -16,8 +16,10 @@ int main(void)
 	//producer has TURN = 0; consumer has TURN = 1
 	//  setenv("TURN","0",1);
 
+	//Set first turn for the producer
 	FILE *turnFile = fopen("turn.txt", "wt");
 	fputc('0', turnFile);
+	fclose(turnFile);
 
 	//launch the clones
 	int pid = fork();
@@ -29,7 +31,7 @@ int main(void)
 	}
 	if (pid != 0)
 	{
-		consumer();
+//		consumer();
 	}
 
 }
