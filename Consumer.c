@@ -14,25 +14,25 @@
 //it then changes the character in TURN.txt to "0"
 void consumer(){
   
-  char c,d;
-  FILE *q,*s;
+  char cturn,cdata;
+  FILE *openTURN,*openDATA;
   
-  while((q=fopen("TURN.txt","r+"))==NULL);
+  while((openTURN=fopen("TURN.txt","r+"))==NULL);
   
-  c=fgetc(q);
+  cturn=fgetc(openTURN);
   
-  if(c=='1'){
-    s=fopen("DATA.txt","r");
-    d=fgetc(s);
-    printf("%c",d);
+  if(cturn=='1'){
+    openDATA=fopen("DATA.txt","r");
+    cdata=fgetc(openDATA);
+    printf("%c",cdata);
   }
   
   else{
     printf("value in TURN.txt is not 1");
   }
-  fclose(s);
+  fclose(openDATA);
   
-  fputc('0', q);
-  fclose(q);
+  fputc('0', openTURN);
+  fclose(openTURN);
 
 }
