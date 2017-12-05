@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "Consumer.h"
 #define CONSUMER_TURN '1'
-#define END_FIle '2'
+#define END_FILE '2'
 
 //this function opens TURN.txt and reads it's first character
 //if the character == "1" then consumer opens DATA.txt
