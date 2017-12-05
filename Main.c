@@ -20,17 +20,13 @@ int main(void)
 	//launch the clones
 	int pid = fork();
 
-	switch (pid)
-	{
-	case -1:
+	if (pid == -1)
 		exit(1);
-		//Producer is child process
-	case 0:
+	//Producer is child process
+	else if (pid == 0)
 		producer();
-		break;
-		//Consumer is parent process
-	default:
-		consumer();
-		break;
-	}
+	//Consumer is parent process
+	//else if (pid == 0)
+	//	consumer();
+	exit(0);
 }
