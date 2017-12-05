@@ -6,6 +6,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "Consumer.h"
 #define CONSUMER_TURN '1'
 #define END_FILE '2'
