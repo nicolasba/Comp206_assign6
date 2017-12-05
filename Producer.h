@@ -9,5 +9,6 @@
 #define COMP206_ASSIGN6_PRODUCER_H_
 
 void producer();
+void overwriteTurn(FILE *turnFile, char data);
 
 #endif /* COMP206_ASSIGN6_PRODUCER_H_ */

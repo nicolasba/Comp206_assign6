@@ -17,12 +17,12 @@ void consumer(){
   char c,d;
   FILE *q,*s;
   
-  while((q=fopen("turn.txt","r+"))==NULL);
+  while((q=fopen("TURN.txt","r+"))==NULL);
   
   c=fgetc(q);
   
   if(c=='1'){
-    s=fopen("data.txt","r");
+    s=fopen("DATA.txt","r");
     d=fgetc(s);
     printf("%c",d);
   }

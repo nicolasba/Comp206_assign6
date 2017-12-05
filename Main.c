@@ -12,26 +12,25 @@
 
 int main(void)
 {
-	//intitialize TURN shell variable to 0
-	//producer has TURN = 0; consumer has TURN = 1
-	//  setenv("TURN","0",1);
-
 	//Set first turn for the producer
-	FILE *turnFile = fopen("turn.txt", "wt");
+	FILE *turnFile = fopen("TURN.txt", "wt");
 	fputc('0', turnFile);
 	fclose(turnFile);
 
 	//launch the clones
 	int pid = fork();
-	if (pid == -1)
-		exit(1);
-	if (pid == 0)
-	{
-		producer();
-	}
-	if (pid != 0)
-	{
-//		consumer();
-	}
 
+	switch (pid)
+	{
+	case -1:
+		exit(1);
+		//Producer is child process
+	case 0:
+		producer();
+		break;
+		//Consumer is parent process
+	default:
+		consumer();
+		break;
+	}
 }
