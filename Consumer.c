@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Consumer.h"
+#include "Producer.h"
 #define CONSUMER_TURN '1'
 #define END_FILE '2'
 
@@ -43,11 +43,4 @@ void consumer(){
   
   fclose(turnFile);
 
-}
-
-
-void overwriteTurn(FILE *turnFile, char data){
-  fclose(turnFile);
-  while((turnFile = fopen("TURN.txt", "wt")) == NULL);
-  fputc(data, turnFile);
 }
