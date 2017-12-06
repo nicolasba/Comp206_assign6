@@ -30,17 +30,19 @@ void consumer(){
     exit(0);
   }
   
-  while(turn == CONSUMER_TURN){
-      dataFile=fopen("DATA.txt","r");
-      charData=fgetc(dataFile);
-      printf("%c",charData);
+  if(turn == CONSUMER_TURN){
     
-      fclose(dataFile);
+    do{
+        dataFile=fopen("DATA.txt","r");
+        charData=fgetc(dataFile);
+        printf("%c",charData);
     
-      fputc('0', turnFile);
-      overwriteTurn(turnFile, '1');
+        fclose(dataFile);
+    
+        overwriteTurn(turnFile, '0');
+      
+        fclose(turnFile);
+        
+    }while(1);
   }
-  
-  fclose(turnFile);
-
 }
