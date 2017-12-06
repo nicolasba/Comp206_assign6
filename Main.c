@@ -28,5 +28,4 @@ int main(void)
 	//Consumer is parent process
 	else if (pid != 0)
 		consumer();
-	exit(0);
 }

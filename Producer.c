@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "Producer.h"
 #define PRODUCER_TURN '0'
+#define END_FILE '2'
 
 /*
  * This function constantly tries to open and read from "turn.txt". When
@@ -36,21 +37,16 @@ void producer()
 		if (turn == PRODUCER_TURN)
 		{
 			dataToFile = fopen("DATA.txt", "wt");
-
-//			printf("%c", charToProduce);
 			fputc(charToProduce, dataToFile);
 
 			fclose(dataToFile);
 			charToProduce = fgetc(dataFromFile);
-			//In order to change turns for consumer, "turn.txt" must be overwritten
-			//with '1'. The file needs to be closed and reopened.
-			overwriteTurn(turnFile, '1');
+			overwriteTurn(turnFile, '1'); //Pass turn to consumer
 		}
-
 		fclose(turnFile);
 	}
 
-	//Put '2' inside "turn.txt" so that consumer knows producer has reached
+	//Put '2' (END_FILE) inside "turn.txt" so that consumer knows producer has reached
 	//end of file
 	while (!endOfFile)
 	{
@@ -59,12 +55,11 @@ void producer()
 		if (fgetc(turnFile) == PRODUCER_TURN)
 		{
 			endOfFile = 1;
-			overwriteTurn(turnFile, '2');
+			overwriteTurn(turnFile, END_FILE);
 		}
 
 		fclose(turnFile);
 	}
-
 	fclose(dataFromFile);
 }
 
