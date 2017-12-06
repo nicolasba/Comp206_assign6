@@ -37,7 +37,7 @@ void producer()
 		{
 			dataToFile = fopen("DATA.txt", "wt");
 
-			printf("%c", charToProduce);
+//			printf("%c", charToProduce);
 			fputc(charToProduce, dataToFile);
 
 			fclose(dataToFile);
