@@ -30,7 +30,6 @@ void consumer()
 
 		if (turn == END_FILE)
 		{
-			printf("\n all the data is printed");
 			exit(0);
 		}
 
