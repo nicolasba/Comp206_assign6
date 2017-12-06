@@ -16,33 +16,34 @@
 //reads the character from DATA.txt and prints it to the screen
 //it then changes the character in TURN.txt to "0"
 
-void consumer(){
-  
-  char turn,charData;
-  FILE *turnFile,*dataFile;
-  
-  while((turnFile=fopen("TURN.txt","r+"))==NULL);
-  
-  turn=fgetc(turnFile);
-  
-  if(turn == END_FILE){
-    printf("\n all the data is printed");
-    exit(0);
-  }
-  
-  if(turn == CONSUMER_TURN){
-    
-    do{
-        dataFile=fopen("DATA.txt","r");
-        charData=fgetc(dataFile);
-        printf("%c",charData);
-    
-        fclose(dataFile);
-    
-        overwriteTurn(turnFile, '0');
-      
-        fclose(turnFile);
-        
-    }while(1);
-  }
+void consumer()
+{
+
+	char turn, charData;
+	FILE *turnFile, *dataFile;
+
+	while (1)
+	{
+		while ((turnFile = fopen("TURN.txt", "r+")) == NULL);
+
+		turn = fgetc(turnFile);
+
+		if (turn == END_FILE)
+		{
+			printf("\n all the data is printed");
+			exit(0);
+		}
+
+		if (turn == CONSUMER_TURN)
+		{
+			dataFile = fopen("DATA.txt", "r");
+			charData = fgetc(dataFile);
+			printf("%c", charData);
+
+			fclose(dataFile);
+
+			overwriteTurn(turnFile, '0');
+		}
+		fclose(turnFile);
+	}
 }
