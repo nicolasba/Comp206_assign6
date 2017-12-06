@@ -44,7 +44,7 @@ void producer()
 			charToProduce = fgetc(dataFromFile);
 			//In order to change turns for consumer, "turn.txt" must be overwritten
 			//with '1'. The file needs to be closed and reopened.
-			overwriteTurn(turnFile, '0');
+			overwriteTurn(turnFile, '1');
 		}
 
 		fclose(turnFile);
@@ -66,7 +66,6 @@ void producer()
 	}
 
 	fclose(dataFromFile);
-	exit(0);
 }
 
 //This function reopens "turn.txt" and overwrites its content with "data"

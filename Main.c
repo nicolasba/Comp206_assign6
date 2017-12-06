@@ -26,7 +26,7 @@ int main(void)
 	else if (pid == 0)
 		producer();
 	//Consumer is parent process
-	//else if (pid == 0)
-	//	consumer();
+	else if (pid != 0)
+		consumer();
 	exit(0);
 }
