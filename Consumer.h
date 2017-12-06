@@ -9,6 +9,5 @@
 #define COMP206_ASSIGN6_CONSUMER_H_
 
 void consumer();
-void overwriteTuen(FILE*,char);
 
 #endif /* COMP206_ASSIGN6_CONSUMER_H_ */
